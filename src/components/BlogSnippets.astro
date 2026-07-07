@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const recent = posts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+
+<section class="section" id="blogs">
+  <h2 class="section__heading">Recent Blogs</h2>
+  <div class="card-grid">
+    {recent.map(post => (
+      <article class="card">
+        <a href={`/blogs/${post.id}`}>
+          <time class="blog-card__date" datetime={post.data.date.toISOString()}>
+            {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+          </time>
+          <h3 class="blog-card__title">{post.data.title}</h3>
+          <p class="blog-card__excerpt">{post.data.excerpt}</p>
+          <span class="blog-card__link">Read more &rarr;</span>
+        </a>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .blog-card__date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .blog-card__title {
+    margin-top: 8px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .blog-card__excerpt {
+    margin-top: 12px;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .blog-card__link {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--accent);
+    transition: opacity 0.2s ease;
+  }
+
+  .blog-card__link:hover {
+    opacity: 0.7;
+  }
+</style>
