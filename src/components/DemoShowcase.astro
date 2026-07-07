@@ -25,7 +25,7 @@ const demos = [
   <h2 class="section__heading">Demos</h2>
   <div class="card-grid">
     {demos.map((demo, i) => (
-      <article class="card reveal" style={`transition-delay: ${i * 0.1}s`}>
+      <article class="card reveal" style={`--reveal-delay: ${i * 0.1}s`}>
         <a href={demo.url} target="_blank" rel="noopener noreferrer">
           <h3 class="demo-card__name">
             {demo.name}

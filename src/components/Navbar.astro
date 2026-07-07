@@ -32,7 +32,8 @@ const currentPath = Astro.url?.pathname || '/';
   let ticking = false;
 
   function updateNavbar() {
-    const scrolled = window.scrollY > window.innerHeight - 64;
+    const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height'));
+    const scrolled = window.scrollY > window.innerHeight - navHeight;
     if (scrolled) {
       navbar?.classList.add('navbar--scrolled');
     } else {
