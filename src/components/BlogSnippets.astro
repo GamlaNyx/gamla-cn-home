@@ -7,11 +7,11 @@ const recent = posts
   .slice(0, 3);
 ---
 
-<section class="section" id="blogs">
+<section class="section reveal" id="blogs">
   <h2 class="section__heading">Recent Blogs</h2>
   <div class="card-grid">
-    {recent.map(post => (
-      <article class="card">
+    {recent.map((post, i) => (
+      <article class="card reveal" style={`transition-delay: ${i * 0.1}s`}>
         <a href={`/blogs/${post.id}`}>
           <time class="blog-card__date" datetime={post.data.date.toISOString()}>
             {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
