@@ -1,0 +1,136 @@
+---
+// User-configurable content
+const name = 'Your Name';
+const tagline = 'Building things for the web.';
+---
+
+<section class="hero">
+  <canvas class="hero__canvas" id="hero-canvas"></canvas>
+  <div class="hero__content">
+    <h1 class="hero__name">{name}</h1>
+    <p class="hero__tagline">{tagline}</p>
+  </div>
+  <div class="hero__scroll-hint">
+    <svg width="24" height="40" viewBox="0 0 24 40" fill="none" stroke="var(--text-muted)" stroke-width="1.5">
+      <rect x="1" y="1" width="22" height="38" rx="11" />
+      <circle cx="12" cy="14" r="3" fill="var(--text-muted)">
+        <animate attributeName="cy" values="14;22;14" dur="2s" repeatCount="indefinite" />
+      </circle>
+    </svg>
+  </div>
+</section>
+
+<script>
+  class Blob {
+    constructor(w, h) {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = (Math.random() - 0.5) * 0.3;
+      this.radius = 200 + Math.random() * 300;
+      this.color = `rgba(10, 255, 10, ${0.03 + Math.random() * 0.04})`;
+    }
+
+    update(w, h) {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if (this.x < -this.radius) this.x = w + this.radius;
+      if (this.x > w + this.radius) this.x = -this.radius;
+      if (this.y < -this.radius) this.y = h + this.radius;
+      if (this.y > h + this.radius) this.y = -this.radius;
+    }
+
+    draw(ctx) {
+      ctx.beginPath();
+      const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+      gradient.addColorStop(0, this.color);
+      gradient.addColorStop(1, 'transparent');
+      ctx.fillStyle = gradient;
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  const canvas = document.getElementById('hero-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      let w = window.innerWidth;
+      let h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+
+      const blobs = Array.from({ length: 4 }, () => new Blob(w, h));
+
+      function animate() {
+        if (!ctx || !canvas) return;
+        ctx.clearRect(0, 0, w, h);
+
+        for (const blob of blobs) {
+          blob.update(w, h);
+          blob.draw(ctx);
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      window.addEventListener('resize', () => {
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = w;
+        canvas.height = h;
+      });
+    }
+  }
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero__canvas {
+    position: absolute;
+    inset: 0;
+    filter: blur(80px);
+    z-index: 0;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .hero__name {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+  }
+
+  .hero__tagline {
+    margin-top: 16px;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .hero__scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    opacity: 0.6;
+  }
+</style>
