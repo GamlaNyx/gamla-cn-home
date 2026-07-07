@@ -1,0 +1,89 @@
+---
+const demos = [
+  {
+    name: 'Pixel Weather',
+    description: 'A minimal weather app with pixel-art animations and location-based forecasts.',
+    tags: ['React', 'OpenWeather API'],
+    url: 'https://github.com',
+  },
+  {
+    name: 'Markdown Notes',
+    description: 'Quick note-taking app with Markdown preview, tags, and full-text search.',
+    tags: ['Vue', 'IndexedDB'],
+    url: 'https://github.com',
+  },
+  {
+    name: 'Color Palette Generator',
+    description: 'Generate harmonious color palettes from an image or a base color. Export as CSS variables or Tailwind config.',
+    tags: ['Vanilla JS', 'Canvas'],
+    url: 'https://github.com',
+  },
+];
+---
+
+<section class="section" id="demos">
+  <h2 class="section__heading">Demos</h2>
+  <div class="card-grid">
+    {demos.map(demo => (
+      <article class="card">
+        <a href={demo.url} target="_blank" rel="noopener noreferrer">
+          <h3 class="demo-card__name">
+            {demo.name}
+            <svg class="demo-card__external" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 2H2v10h10V9 M11 3L7 7 M11 3H8.5 M11 3v2.5" />
+            </svg>
+          </h3>
+          <p class="demo-card__desc">{demo.description}</p>
+          <div class="demo-card__tags">
+            {demo.tags.map(tag => <span class="demo-card__tag">{tag}</span>)}
+          </div>
+        </a>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .demo-card__name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .demo-card__external {
+    opacity: 0.4;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .card:hover .demo-card__external {
+    opacity: 1;
+    transform: translate(2px, -2px);
+  }
+
+  .demo-card__desc {
+    margin-top: 12px;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .demo-card__tags {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .demo-card__tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--accent-dark);
+    color: var(--accent);
+  }
+</style>
