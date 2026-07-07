@@ -1,6 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
 ---
 <Layout title="Home" description="My personal homepage">
-  <h1>Hello World</h1>
+  <Navbar />
+  <div style="height: 200vh; padding-top: 64px;">
+    <p style="color: #f0f0f0; padding: 40px;">Scroll to test navbar accent border</p>
+  </div>
 </Layout>
