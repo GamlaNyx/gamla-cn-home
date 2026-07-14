@@ -1,12 +1,10 @@
 ---
-title: 'Building a CLI Tool in Rust'
+title: '用 Rust 构建命令行工具'
 date: 2026-04-10
-excerpt: 'Rust is a great choice for CLI tools — fast startup, small binaries, and excellent error handling. Walk through building a real CLI with clap.'
+excerpt: 'Rust 是编写 CLI 工具的绝佳选择——启动快、二进制小、错误处理优雅。本文带你用 clap 库从零构建一个实用的命令行工具。'
 tags: ['rust', 'cli']
 ---
 
-## Why Rust for CLI?
+## 为什么用 Rust 写 CLI？
 
-Rust combines performance with safety, making it ideal for command-line tools...
-
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Rust 兼顾性能与安全性，是命令行工具的理想之选……

@@ -1,7 +1,7 @@
 ---
 // User-configurable content
-const name = 'Your Name';
-const tagline = 'Building things for the web.';
+const name = 'Hello';
+const tagline = '用代码构建有趣的东西。';
 ---
 
 <section class="hero">
@@ -25,10 +25,10 @@ const tagline = 'Building things for the web.';
     constructor(w, h) {
       this.x = Math.random() * w;
       this.y = Math.random() * h;
-      this.vx = (Math.random() - 0.5) * 0.3;
-      this.vy = (Math.random() - 0.5) * 0.3;
-      this.radius = 200 + Math.random() * 300;
-      this.color = `rgba(10, 255, 10, ${0.03 + Math.random() * 0.04})`;
+      this.vx = (Math.random() - 0.5) * 0.5;
+      this.vy = (Math.random() - 0.5) * 0.5;
+      this.radius = 250 + Math.random() * 400;
+      this.color = `rgba(10, 255, 10, ${0.08 + Math.random() * 0.15})`;
     }
 
     update(w, h) {
@@ -61,7 +61,7 @@ const tagline = 'Building things for the web.';
       canvas.width = w;
       canvas.height = h;
 
-      const blobs = Array.from({ length: 4 }, () => new Blob(w, h));
+      const blobs = Array.from({ length: 6 }, () => new Blob(w, h));
 
       function animate() {
         if (!ctx || !canvas) return;
@@ -93,9 +93,6 @@ const tagline = 'Building things for the web.';
     height: 100vh;
     width: 100%;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .hero__canvas {
@@ -106,9 +103,11 @@ const tagline = 'Building things for the web.';
   }
 
   .hero__content {
-    position: relative;
+    position: absolute;
+    bottom: clamp(60px, 12vh, 140px);
+    left: clamp(24px, 6vw, 80px);
     z-index: 1;
-    text-align: center;
+    text-align: left;
   }
 
   .hero__name {

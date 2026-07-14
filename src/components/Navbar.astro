@@ -11,7 +11,6 @@ const currentPath = Astro.url?.pathname || '/';
 
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
-    <a href="/" class="navbar__logo">~</a>
     <ul class="navbar__links">
       {navLinks.map(link => (
         <li>
@@ -56,41 +55,33 @@ const currentPath = Astro.url?.pathname || '/';
 <style>
   .navbar {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1000;
     height: var(--nav-height);
+    width: calc(100% - 32px);
+    max-width: 1100px;
     background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
-    border-bottom: 0.5px solid var(--glass-border);
-    transition: border-color 0.3s ease;
+    border: none;
+    border-radius: 32px;
+    transition: box-shadow 0.3s ease;
   }
 
   .navbar--scrolled {
-    border-bottom-color: var(--accent);
+    box-shadow: 0 0 30px rgba(10, 255, 10, 0.08);
   }
 
   .navbar__inner {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 28px;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-  }
-
-  .navbar__logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--accent);
-    transition: opacity 0.2s ease;
-  }
-
-  .navbar__logo:hover {
-    opacity: 0.7;
+    justify-content: center;
   }
 
   .navbar__links {
@@ -115,7 +106,7 @@ const currentPath = Astro.url?.pathname || '/';
     left: 0;
     width: 0;
     height: 1.5px;
-    background: var(--accent);
+    background: var(--accent-dark);
     transition: width 0.2s ease;
   }
 

@@ -1,12 +1,10 @@
 ---
-title: 'Getting Started with TypeScript'
+title: 'TypeScript 入门指南'
 date: 2026-06-15
-excerpt: 'TypeScript adds static typing to JavaScript, catching errors early and improving developer experience. A gentle introduction to the type system and tooling.'
+excerpt: 'TypeScript 为 JavaScript 添加了静态类型系统，能在编码阶段捕获错误，大幅提升开发体验。本文带你从零开始了解类型系统与工具链。'
 tags: ['typescript', 'javascript']
 ---
 
-## Why TypeScript?
+## 为什么选择 TypeScript？
 
-TypeScript has become the de facto standard for building large-scale JavaScript applications...
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+TypeScript 已经成为构建大型 JavaScript 应用的事实标准……
