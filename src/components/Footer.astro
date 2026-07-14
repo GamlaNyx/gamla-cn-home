@@ -14,7 +14,15 @@ const socials = [
         </a>
       ))}
     </div>
-    <p class="footer__copy">&copy; {new Date().getFullYear()} 保留所有权利。</p>
+    <div class="footer__legal">
+      <p class="footer__copy">&copy;2026 <a href="http://gamla.cn">gamla.cn</a> 版权所有</p>
+      <p class="footer__copy">
+        <a href="http://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">辽ICP备2026013468号</a>
+      </p>
+      <p class="footer__copy">
+        <a href="/privacy">隐私政策</a>
+      </p>
+    </div>
   </div>
 </footer>
 
@@ -53,5 +61,21 @@ const socials = [
   .footer__copy {
     font-size: 0.8rem;
     color: var(--text-muted);
+  }
+
+  .footer__legal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .footer__legal a {
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .footer__legal a:hover {
+    color: var(--accent);
   }
 </style>
